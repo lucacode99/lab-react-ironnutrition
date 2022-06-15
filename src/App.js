@@ -1,23 +1,54 @@
-import logo from './logo.svg';
 import './App.css';
+import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import foodsJSON from './foods.json'
+import React, {useState} from 'react'
 
 function App() {
+  const [food, setFood] = useState(foodsJSON)
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+
+    
+      <Row>
+        <Col>
+          <Divider>Fancy Input</Divider>
+          <Input value={''} onChange={() => {}} />
+        </Col>
+
+        <Col>
+          <Card title={'Fancy Card'}>
+            <Button onClick={() => {}}>Fancy Button</Button>
+          </Card>
+        </Col>
+      </Row>
+    
+      <Col>
+      {food.map((element, index) =>{
+        return (
+      
+      <Card
+        title={element.name}
+        style={{ width: 230, height: 300, margin: 10 }} key={index}
+      > 
+        <img src={element.image} height={60} alt="food" />
+        <p>{element.calories}</p>
+        <p>Servings: {element.servings}</p>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <b>Total Calories: {element.calories * element.servings} </b> kcal
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        
+        <Button type="primary"> Delete </Button>
+      </Card>)
+    })}
+    </Col>
+  
+
+    
+   
+
+    
     </div>
   );
 }
