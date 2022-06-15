@@ -2,6 +2,7 @@ import './App.css';
 import { Card, Row, Col, Divider, Input, Button } from 'antd';
 import React from 'react'
 import FoodBox from './components/FoodBox'
+import AddFoodForm from './components/AddFoodForm'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         </Col>
       </Row>
     <FoodBox />
+    <AddFoodForm />
     </div>
   );
 }
