@@ -1,10 +1,17 @@
 import './App.css';
 import { Card, Row, Col, Divider, Input, Button } from 'antd';
-import React from 'react'
+import React, {useState} from 'react'
 import FoodBox from './components/FoodBox'
 import AddFoodForm from './components/AddFoodForm'
+import foodsJSON from './foods.json'
 
-function App() {
+function App(props) {
+  //new
+  const [food, setFood] = useState(foodsJSON)
+  const addNewFood = (newFood) => {
+      const updatedFood = [...food, newFood];
+      setFood(updatedFood);
+    };
 
   return (
     <div className="App">
@@ -16,13 +23,21 @@ function App() {
         </Col>
 
         <Col>
-          <Card title={'Fancy Card'}>
+          <Card title='Fancy Card'>
             <Button onClick={() => {}}>Fancy Button</Button>
           </Card>
         </Col>
+
       </Row>
-    <FoodBox />
-    <AddFoodForm />
+      <Col>
+      <Card>
+        <AddFoodForm addNewFood={addNewFood}/>
+        
+
+      </Card>
+    </Col>
+    <FoodBox newFood ={food}/>
+    
     </div>
   );
 }

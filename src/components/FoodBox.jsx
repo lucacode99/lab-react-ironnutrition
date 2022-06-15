@@ -1,13 +1,14 @@
-
-import { Card, Row, Col, Divider, Input, Button } from 'antd';
+import { Card, Col, Button } from 'antd';
 import foodsJSON from '../foods.json'
 import React, {useState} from 'react'
 
 function FoodBox(props) {
-    const [food, setFood] = useState(foodsJSON)
+    //const [food, setFood] = useState(foodsJSON)
+
+
   return (
     <Col>
-    {food.map((element, index) =>{
+    {props.newFood.map((element, index) =>{
       return (
     
     <Card

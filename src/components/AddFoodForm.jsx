@@ -1,12 +1,9 @@
 import React, {useState} from 'react'
+//import FoodBox from './components/FoodBox'
+// const newFood = { name, image, calories, servings }
+//console.log("Submitted: ", newFood)
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    // const newFood = { name, image, calories, servings }
-    //console.log("Submitted: ", newFood)
-}
-
-function AddFoodForm() {
+function AddFoodForm(props) {
 
     const [name, setName] = useState("")
     const [image, setImage] = useState("")
@@ -18,21 +15,37 @@ function AddFoodForm() {
     const handleCaloriesInput = e => setCalories(e.target.value)
     const handleServingsInput = e => setServings(e.target.value)
 
+    const handleSubmit = (e) => {
+     e.preventDefault();
+        props.addNewFood ( {
+        name,
+        image,
+        calories,
+        servings
+      })
+
+      // Reset the state
+      setName("");
+      setImage("");
+      setCalories("");
+      setServings("")   
+    }
+    
   return (
     <div>AddFoodForm
     <form onSubmit={handleSubmit}>
 
-        <label for="name"> name: </label>
-        <input name ="name"value={name} type="text" onChange={handleNameInput} />
+        <label > name </label>
+        <input name ="name" value={name} type="text" onChange={handleNameInput} />
 
-        <label for="image"> image: </label>
-        <input name ="image"value={image} type="text" onChange={handleimageInput} />
+        <label > image </label>
+        <input name ="image" value={image} type="text" onChange={handleimageInput} />
 
-        <label for="calories"> calories: </label>
-        <input name ="calories"value={calories} type="text" onChange={handleCaloriesInput} />
+        <label > calories </label>
+        <input name ="calories" value={calories} type="text" onChange={handleCaloriesInput} />
 
-        <label for="servings"> servings: </label>
-        <input name ="servings"value={servings} type="text" onChange={handleServingsInput} />
+        <label > servings </label>
+        <input name ="servings" value={servings} type="text" onChange={handleServingsInput} />
 
        <button type="submit">add food</button>
     </form>
